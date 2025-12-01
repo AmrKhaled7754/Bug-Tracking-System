@@ -1,0 +1,9 @@
+//format : username,password,email,role
+
+amr21,amr2006,amr@gmail.com,admin
+ziad20,ziad2006,ziad@gmail.com,developer
+mohamed19,mohamed2006,mohamed@gmail.com,developer
+omar18,omar2006,omar@gmail.com,tester
+ganna17,ganna2006,ganna@gmail.com,tester
+maryam16,maryam2006,maryam@gmail.com,pm
+sara15,sara2006,sara@gmail.com,pm
