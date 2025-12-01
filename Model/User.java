@@ -25,4 +25,9 @@ public abstract class User {
 
     // Abstract method - each role implements differently
     public abstract void displayMenu();
+
+    @Override
+    public String toString() {
+        return "Username: " + username + ", Email: " + email + ", Role: " + role;
+    }
 }
