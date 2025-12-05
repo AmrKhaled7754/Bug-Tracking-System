@@ -1,0 +1,14 @@
+//format:bugName,type,priority,level,projectName,date,status,reportedBy,assignedDeveloper,screenshot
+
+Login button not working,Functional,High,Critical,E-Commerce App,2024-01-15,open,omar18,ziad20,screenshots/login_bug.png
+Homepage slow loading,Performance,Medium,Major,E-Commerce App,2024-01-16,in progress,ganna17,mohamed19,screenshots/homepage_slow.png
+Checkout cart calculation error,Functional,Critical,Critical,E-Commerce App,2024-01-14,closed,omar18,ziad20,screenshots/cart_error.png
+Mobile menu not responsive,UI,Low,Minor,E-Commerce App,2024-01-17,open,ganna17,,screenshots/mobile_menu.png
+Database connection timeout,Technical,High,Major,Banking System,2024-01-10,in progress,omar18,mohamed19,screenshots/db_timeout.png
+User profile image not uploading,Functional,Medium,Major,Social Media App,2024-01-12,closed,ganna17,ziad20,screenshots/upload_issue.png
+Search feature returns no results,Functional,High,Critical,E-Commerce App,2024-01-18,open,omar18,ziad20,screenshots/search_bug.png
+Payment gateway integration failing,Functional,Critical,Critical,Banking System,2024-01-11,in progress,ganna17,mohamed19,screenshots/payment_fail.png
+Notification emails not sending,Technical,Medium,Major,Social Media App,2024-01-13,closed,omar18,ziad20,screenshots/email_bug.png
+Dark mode theme inconsistent,UI,Low,Minor,Social Media App,2024-01-19,open,ganna17,,screenshots/dark_mode.png
+Password reset link broken,Security,Critical,Critical,Banking System,2024-01-09,closed,omar18,mohamed19,screenshots/reset_bug.png
+Product images not displaying,UI,High,Major,E-Commerce App,2024-01-20,open,ganna17,ziad20,screenshots/image_display.png
