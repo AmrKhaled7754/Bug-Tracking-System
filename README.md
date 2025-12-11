@@ -34,4 +34,4 @@ A desktop-based Bug Tracking System built using **Java Swing**, designed to mana
 
 ---
 
-## 📂 Project Structure
+
