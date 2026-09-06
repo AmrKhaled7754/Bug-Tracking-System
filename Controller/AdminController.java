@@ -35,6 +35,7 @@ public class AdminController {
             return;
         }
 
+        assert role != null;
         boolean success = admin.addUser(username, password, email, role.toLowerCase());
         if (success) {
             showAlert("Success", "User added successfully!");
@@ -89,29 +90,7 @@ public class AdminController {
         }
     }
 
-    public void deleteBug() {
-        int row = view.bugsTable.getSelectedRow();
-        if (row == -1) {
-            showAlert("Error", "Please select a bug to delete!");
-            return;
-        }
 
-        String bugName = view.bugsTable.getValueAt(row, 0).toString();
-
-        int confirm = JOptionPane.showConfirmDialog(view,
-                "Are you sure you want to delete bug: " + bugName + "?",
-                "Confirm Delete", JOptionPane.YES_NO_OPTION);
-
-        if (confirm == JOptionPane.YES_OPTION) {
-            boolean success = admin.deleteBug(bugName);
-            if (success) {
-                showAlert("Success", "Bug deleted successfully!");
-                loadAllBugs();
-            } else {
-                showAlert("Error", "Bug not found!");
-            }
-        }
-    }
 
     public void logout() {
         view.dispose();

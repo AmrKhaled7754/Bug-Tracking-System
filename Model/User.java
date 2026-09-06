@@ -13,6 +13,10 @@ public abstract class User {
         this.role = role;
     }
 
+    public User() {
+
+    }
+
     // Getters and Setters
     public void setUsername(String username) {
         this.username = username;

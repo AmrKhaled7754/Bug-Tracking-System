@@ -113,8 +113,8 @@ public class Admin extends User {
     }
 
     // Delete a bug
-    public boolean deleteBug(String bugName) {
-        FileManager fileManager = new FileManager();
-        return fileManager.deleteBug(bugName);
-    }
+//    public boolean deleteBug(String bugName) {
+//        FileManager fileManager = new FileManager();
+//        return fileManager.deleteBug(bugName);
+//    }
 }

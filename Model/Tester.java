@@ -1,4 +1,7 @@
+
 package Model;
+
+import javax.swing.JOptionPane;
 
 public class Tester extends User {
 
@@ -32,11 +35,23 @@ public class Tester extends User {
 
     // email notification to developer
     private void notifyDeveloper(String developerUsername, Bug bug) {
-        System.out.println("=== NOTIFICATION ===");
-        System.out.println("Email sent to: " + developerUsername);
-        System.out.println("Subject: New Bug Assigned - " + bug.getBugName());
-        System.out.println("Bug Details: " + bug.getType() + " | Priority: " + bug.getPriority());
-        System.out.println("====================");
+        String message = "📧 Email Notification Sent!\n\n" +
+                "Bug assigned to developer: " + developerUsername + "\n" +
+                "Bug Name: " + bug.getBugName() + "\n" +
+                "Priority: " + bug.getPriority() + "\n" +
+                "Type: " + bug.getType() + "\n\n" +
+                "Email sent to: " + developerUsername + "@company.com";
+
+        JOptionPane.showMessageDialog(null,
+                message,
+                "Email Sent ✓",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        // Console notification
+        System.out.println("\n=== EMAIL NOTIFICATION ===");
+        System.out.println("Bug assigned to developer: " + developerUsername);
+        System.out.println("Email sent to: " + developerUsername + "@company.com");
+        System.out.println("==========================\n");
     }
 
     // attaching screenshot

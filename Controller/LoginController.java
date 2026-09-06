@@ -15,33 +15,20 @@ public class LoginController {
         this.view = view;
     }
 
-    public void initialize() {
-        view.roleBox.addItem("admin");
-        view.roleBox.addItem("developer");
-        view.roleBox.addItem("tester");
-        view.roleBox.addItem("pm");
-    }
-
     public void handleLogin() {
         String username = view.usernameField.getText().trim();
-        String email = view.emailField.getText().trim();
         String password = new String(view.passwordField.getPassword()).trim();
-        String role = (String) view.roleBox.getSelectedItem();
 
-        if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            showAlert("Error", "Please fill all fields!");
+        if (username.isEmpty() || password.isEmpty()) {
+            showAlert("Error", "Please fill username and password!");
             return;
         }
 
         user = fileManager.findUser(username, password);
 
-        if (user != null && user.getEmail().equals(email)) {
+        if (user != null) {
 
-            if (role != null && !role.equalsIgnoreCase(user.getRole())) {
-                showAlert("Role Mismatch", "Selected role does not match user role.");
-                return;
-            }
-
+            // Redirect based on user role automatically
             switch (user.getRole().toLowerCase()) {
                 case "admin":
                     openWindow(new AdminView((Admin) user));
@@ -61,7 +48,7 @@ public class LoginController {
             }
 
         } else {
-            showAlert("Login Failed", "Invalid username, password or email.");
+            showAlert("Login Failed", "Invalid username or password.");
         }
     }
 

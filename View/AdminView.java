@@ -134,14 +134,7 @@ public class AdminView extends JFrame {
         bugsTable.setRowHeight(25);
         JScrollPane scrollPane = new JScrollPane(bugsTable);
         panel.add(scrollPane, BorderLayout.CENTER);
-
-        // Delete Bug Button
         JPanel buttonPanel = new JPanel();
-        JButton deleteBugBtn = new JButton("Delete Selected Bug");
-        deleteBugBtn.setBackground(new Color(220, 53, 69));
-        deleteBugBtn.setForeground(Color.WHITE);
-        deleteBugBtn.addActionListener(e -> controller.deleteBug());
-        buttonPanel.add(deleteBugBtn);
         panel.add(buttonPanel, BorderLayout.SOUTH);
 
         return panel;

@@ -1,4 +1,7 @@
+
 package Model;
+
+import javax.swing.JOptionPane;
 
 public class Developer extends User {
 
@@ -25,13 +28,23 @@ public class Developer extends User {
         }
     }
 
-    // email notification to tester
     private void notifyTester(Bug bug) {
-        System.out.println("=== NOTIFICATION ===");
-        System.out.println("Email sent to: " + bug.getReportedBy());
-        System.out.println("Subject: Bug Completed - " + bug.getBugName());
-        System.out.println("The bug has been fixed by " + this.username);
-        System.out.println("====================");
+        String message = "📧 Email Notification Sent!\n\n" +
+                "Bug completed by: " + this.username + "\n" +
+                "Bug Name: " + bug.getBugName() + "\n" +
+                "New Status: " + bug.getStatus() + "\n\n" +
+                "Email sent to tester: " + bug.getReportedBy() + "@company.com";
+
+        JOptionPane.showMessageDialog(null,
+                message,
+                "Email Sent ✓",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        // Console notification كمان
+        System.out.println("\n=== EMAIL NOTIFICATION ===");
+        System.out.println("Bug completed by: " + this.username);
+        System.out.println("Email sent to tester: " + bug.getReportedBy() + "@company.com");
+        System.out.println("==========================\n");
     }
 
     // check if bug is assigned to this developer

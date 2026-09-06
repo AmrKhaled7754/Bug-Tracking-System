@@ -84,7 +84,7 @@ public class PM extends User {
         System.out.println("Closed Bugs: " + closedBugs);
         System.out.println("Total Bugs: " + bugs.size());
         System.out.println("Completion Rate: " +
-                (bugs.size() > 0 ? (closedBugs * 100 / bugs.size()) : 0) + "%");
+                (!bugs.isEmpty() ? (closedBugs * 100 / bugs.size()) : 0) + "%");
     }
 
     // Get bugs by priority

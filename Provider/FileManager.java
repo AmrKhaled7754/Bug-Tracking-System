@@ -1,3 +1,4 @@
+
 package Provider;
 
 import Model.*;
@@ -6,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileManager {
-    private static final String USERS_FILE = "src/Data/users.txt";
-    private static final String BUGS_FILE = "src/Data/bugs.txt";
+    private static final String USERS_FILE = "Data/users.txt";
+    private static final String BUGS_FILE = "Data/bugs.txt";
 
     // getting all users from file
     public List<User> loadUsers() {
@@ -18,26 +19,7 @@ public class FileManager {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length == 4) {
-                    String username = parts[0].trim();
-                    String password = parts[1].trim();
-                    String email = parts[2].trim();
-                    String role = parts[3].trim();
-
-                    User user = null;
-                    switch (role.toLowerCase()) {
-                        case "admin":
-                            user = new Admin(username, password, email);
-                            break;
-                        case "developer":
-                            user = new Developer(username, password, email);
-                            break;
-                        case "tester":
-                            user = new Tester(username, password, email);
-                            break;
-                        case "pm":
-                            user = new PM(username, password, email);
-                            break;
-                    }
+                    User user = getUser(parts);
 
                     if (user != null) {
                         users.add(user);
@@ -49,6 +31,22 @@ public class FileManager {
         }
 
         return users;
+    }
+
+    private static User getUser(String[] parts) {
+        String username = parts[0].trim();
+        String password = parts[1].trim();
+        String email = parts[2].trim();
+        String role = parts[3].trim();
+
+        User user = switch (role.toLowerCase()) {
+            case "admin" -> new Admin(username, password, email);
+            case "developer" -> new Developer(username, password, email);
+            case "tester" -> new Tester(username, password, email);
+            case "pm" -> new PM(username, password, email);
+            default -> null;
+        };
+        return user;
     }
 
     // save the users to the file
@@ -72,19 +70,10 @@ public class FileManager {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 10) {
-                    Bug bug = new Bug(
-                            parts[0].trim(), // bugName
-                            parts[1].trim(), // type
-                            parts[2].trim(), // priority
-                            parts[3].trim(), // level
-                            parts[4].trim(), // projectName
-                            parts[5].trim(), // date
-                            parts[6].trim(), // status
-                            parts[7].trim(), // reportedBy
-                            parts[8].trim(), // assignedDeveloper
-                            parts[9].trim()  // screenshot
-                    );
+
+
+                if (parts.length >= 10) {
+                    Bug bug = getBug(parts);
                     bugs.add(bug);
                 }
             }
@@ -93,6 +82,25 @@ public class FileManager {
         }
 
         return bugs;
+    }
+
+    private static Bug getBug(String[] parts) {
+        String assignDate = parts.length == 11 ? parts[10].trim() : "";
+
+        Bug bug = new Bug(
+                parts[0].trim(), // bugName
+                parts[1].trim(), // type
+                parts[2].trim(), // priority
+                parts[3].trim(), // level
+                parts[4].trim(), // projectName
+                parts[5].trim(), // date
+                parts[6].trim(), // status
+                parts[7].trim(), // reportedBy
+                parts[8].trim(), // assignedDeveloper
+                parts[9].trim(), // screenshot
+                assignDate       // ✅ assignDate
+        );
+        return bug;
     }
 
     // save bugs to the file

@@ -30,6 +30,8 @@ public class TesterController {
         String priority = (String) view.bugPriorityBox.getSelectedItem();
         String level = (String) view.bugLevelBox.getSelectedItem();
         String projectName = view.projectNameField.getText().trim();
+        String screenshot = view.screenshotField.getText().trim();
+        String developer = view.developerField.getText().trim();  // ✅ جديد
 
         if (bugName.isEmpty() || projectName.isEmpty()) {
             showAlert("Error", "Please fill bug name and project name!");
@@ -39,10 +41,29 @@ public class TesterController {
         // Get current date
         String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
+        // Create bug
         Bug newBug = tester.reportBug(bugName, type, priority, level, projectName, date);
+
+        // Attach screenshot if provided
+        if (!screenshot.isEmpty()) {
+            tester.attachScreenshot(newBug, screenshot);
+        }
+
+        // Assign to developer if provided
+        if (!developer.isEmpty()) {
+            String assignDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            newBug.setAssignDate(assignDate);
+            tester.assignBugToDeveloper(newBug, developer);
+        }
+
         fileManager.addBug(newBug);
 
-        showAlert("Success", "Bug reported successfully!");
+        String message = "Bug reported successfully";
+        if (!screenshot.isEmpty()) message += " with screenshot";
+        if (!developer.isEmpty()) message += " and assigned to " + developer;
+        message += "!";
+
+        showAlert("Success", message);
         view.clearBugFields();
         loadBugs();
     }
@@ -50,7 +71,7 @@ public class TesterController {
     public void assignBug() {
         int row = view.bugsTable.getSelectedRow();
         if (row == -1) {
-            showAlert("Error", "Please select a bug first!");
+            showAlert("Error", "Please select a bug from the table first!");
             return;
         }
 
@@ -64,9 +85,13 @@ public class TesterController {
         Bug bug = findBugByName(bugName);
 
         if (bug != null) {
+            // Set assign date
+            String assignDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            bug.setAssignDate(assignDate);
+
             tester.assignBugToDeveloper(bug, developer);
             fileManager.updateBug(bugName, bug);
-            showAlert("Success", "Bug assigned to " + developer + " successfully!");
+
             view.developerField.setText("");
             loadBugs();
         }
@@ -75,7 +100,7 @@ public class TesterController {
     public void attachScreenshot() {
         int row = view.bugsTable.getSelectedRow();
         if (row == -1) {
-            showAlert("Error", "Please select a bug first!");
+            showAlert("Error", "Please select a bug from the table first!");
             return;
         }
 
@@ -113,6 +138,6 @@ public class TesterController {
 
     private void showAlert(String title, String message) {
         JOptionPane.showMessageDialog(view, message, title,
-            title.equals("Success") ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
+                title.equals("Success") ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
     }
 }

@@ -7,9 +7,7 @@ import java.awt.*;
 public class LoginView extends JFrame {
 
     public JTextField usernameField;
-    public JTextField emailField;
     public JPasswordField passwordField;
-    public JComboBox<String> roleBox;
     public JButton loginButton;
 
     private LoginController controller;
@@ -18,7 +16,7 @@ public class LoginView extends JFrame {
         controller = new LoginController(this);
 
         setTitle("Bug Tracking System - Login");
-        setSize(500, 450);
+        setSize(450, 350);
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -26,61 +24,46 @@ public class LoginView extends JFrame {
         // Title
         JLabel title = new JLabel("Bug Tracking System");
         title.setFont(new Font("Arial", Font.BOLD, 24));
-        title.setBounds(120, 20, 300, 30);
+        title.setBounds(90, 30, 300, 30);
         add(title);
 
         JLabel subtitle = new JLabel("Login");
         subtitle.setFont(new Font("Arial", Font.PLAIN, 18));
-        subtitle.setBounds(220, 55, 100, 25);
+        subtitle.setBounds(190, 70, 100, 25);
         add(subtitle);
 
         // Username
         JLabel userLbl = new JLabel("Username:");
-        userLbl.setBounds(50, 100, 100, 25);
+        userLbl.setFont(new Font("Arial", Font.PLAIN, 14));
+        userLbl.setBounds(60, 130, 100, 25);
         add(userLbl);
 
         usernameField = new JTextField();
-        usernameField.setBounds(150, 100, 250, 30);
+        usernameField.setBounds(160, 130, 220, 30);
+        usernameField.setFont(new Font("Arial", Font.PLAIN, 14));
         add(usernameField);
-
-        // Email
-        JLabel emailLbl = new JLabel("Email:");
-        emailLbl.setBounds(50, 150, 100, 25);
-        add(emailLbl);
-
-        emailField = new JTextField();
-        emailField.setBounds(150, 150, 250, 30);
-        add(emailField);
 
         // Password
         JLabel passLbl = new JLabel("Password:");
-        passLbl.setBounds(50, 200, 100, 25);
+        passLbl.setFont(new Font("Arial", Font.PLAIN, 14));
+        passLbl.setBounds(60, 180, 100, 25);
         add(passLbl);
 
         passwordField = new JPasswordField();
-        passwordField.setBounds(150, 200, 250, 30);
+        passwordField.setBounds(160, 180, 220, 30);
+        passwordField.setFont(new Font("Arial", Font.PLAIN, 14));
         add(passwordField);
-
-        // Role
-        JLabel roleLbl = new JLabel("Role:");
-        roleLbl.setBounds(50, 250, 100, 25);
-        add(roleLbl);
-
-        roleBox = new JComboBox<>();
-        roleBox.setBounds(150, 250, 250, 30);
-        add(roleBox);
 
         // Login Button
         loginButton = new JButton("Login");
-        loginButton.setBounds(200, 320, 100, 40);
+        loginButton.setBounds(170, 250, 100, 40);
         loginButton.setBackground(new Color(70, 130, 180));
         loginButton.setForeground(Color.WHITE);
-        loginButton.setFont(new Font("Arial", Font.BOLD, 14));
+        loginButton.setFont(new Font("Arial", Font.BOLD, 16));
+        loginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         add(loginButton);
 
         loginButton.addActionListener(e -> controller.handleLogin());
-
-        controller.initialize();
 
         setVisible(true);
     }
